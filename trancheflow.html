@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Investors in Asset Backed Securities</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Custom CSS -->
+  <style>
+    .app-bar {
+      background-color: #f8f9fa;
+      padding: 10px;
+    }
+
+    .app-bar h1 {
+      margin: 0;
+    }
+
+    .tranche-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .tranche-table th,
+    .tranche-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .investment-amount {
+      margin-bottom: 20px;
+    }
+
+    .investment-input {
+      width: 150px;
+    }
+
+    .investment-summary {
+      margin-top: 20px;
+    }
+
+    .investment-summary table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .investment-summary th,
+    .investment-summary td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .sell-btn {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-bar">
+    <h1>BlockABS</h1>
+  </div>
+
+  <div class="container">
+    <h2>Investors in Asset Backed Securities</h2>
+
+    <table class="tranche-table">
+      <thead>
+        <tr>
+          <th>Tranche</th>
+          <th>Credit Rating</th>
+          <th>Amount</th>
+          <th>Coupon Rate</th>
+          <th>Tenure</th>
+          <th>Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tranche A</td>
+          <td>AAA</td>
+          <td>$1,000,000</td>
+          <td>4.5%</td>
+          <td>5 years</td>
+          <td><button class="btn btn-primary invest-btn" data-toggle="modal" data-target="#investmentModal"
+              data-tranche="Tranche A">Invest</button></td>
+        </tr>
+        <tr>
+          <td>Tranche B</td>
+          <td>AA</td>
+          <td>$500,000</td>
+          <td>5%</td>
+          <td>3 years</td>
+          <td><button class="btn btn-primary invest-btn" data-toggle="modal" data-target="#investmentModal"
+              data-tranche="Tranche B">Invest</button></td>
+        </tr>
+        <tr>
+          <td>Tranche C</td>
+          <td>A</td>
+          <td>$300,000</td>
+          <td>5.5%</td>
+          <td>2 years</td>
+          <td><button class="btn btn-primary invest-btn" data-toggle="modal" data-target="#investmentModal"
+              data-tranche="Tranche C">Invest</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="modal fade" id="investmentModal" tabindex="-1" role="dialog" aria-labelledby="investmentModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="investmentModalLabel">Enter Investment Amount</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" id="investmentInput" class="form-control investment-input" placeholder="Enter amount">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary buy-btn">Buy</button>
+            <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="investment-summary">
+      <h3>Investment Details Summary:</h3>
+      <table id="investedTranches">
+        <thead>
+          <tr>
+            <th>Tranche</th>
+            <th>Investment Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var investedTranches = [];
+
+      $(".invest-btn").click(function() {
+        var tranche = $(this).data("tranche");
+        $("#investmentModalLabel").text("Enter Investment Amount for " + tranche);
+        $("#investmentModal").data("tranche", tranche).modal("show");
+      });
+
+      $(".buy-btn").click(function() {
+        var investmentAmount = parseFloat($("#investmentInput").val());
+
+        if (isNaN(investmentAmount) || investmentAmount <= 0) {
+          alert("Please enter a valid investment amount.");
+          return;
+        }
+
+        var tranche = $("#investmentModal").data("tranche");
+        investedTranches.push({
+          tranche: tranche,
+          amount: investmentAmount
+        });
+
+        $("#investmentInput").val("");
+        $("#investmentModal").modal("hide");
+
+        updateInvestmentResults();
+      });
+
+      $(document).on("click", ".sell-btn", function() {
+        var tranche = $(this).data("tranche");
+        var index = investedTranches.findIndex(function(item) {
+          return item.tranche === tranche;
+        });
+
+        if (index !== -1) {
+          investedTranches.splice(index, 1);
+          updateInvestmentResults();
+        }
+      });
+
+      function updateInvestmentResults() {
+        var investmentTableBody = $("#investedTranches tbody");
+        investmentTableBody.empty();
+
+        var totalInvestment = 0;
+        $.each(investedTranches, function(index, value) {
+          var row = $("<tr>");
+          row.append($("<td>").text(value.tranche));
+          row.append($("<td>").text(value.amount.toLocaleString()));
+
+          var actionsCell = $("<td>");
+          var sellBtn = $("<button>").addClass("btn btn-danger sell-btn").text("Sell");
+          sellBtn.data("tranche", value.tranche);
+          actionsCell.append(sellBtn);
+          row.append(actionsCell);
+
+          investmentTableBody.append(row);
+
+          totalInvestment += value.amount;
+        });
+
+        $("#totalInvestment").text(totalInvestment.toLocaleString());
+      }
+    });
+  </script>
+</body>
+
+</html>
