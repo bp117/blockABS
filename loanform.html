@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Loan Application</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .step-content {
+      display: none;
+    }
+    .step-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h2>Mortgage Loan Application</h2>
+          </div>
+          <div class="card-body">
+            <form id="wizardForm">
+              <!-- Step 1 -->
+              <div class="step-content active" id="step1">
+                <h3>Step 1: Personal Information</h3>
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" class="form-control" id="fullName" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <button class="btn btn-primary next-btn">Next</button>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="step-content" id="step2">
+                <h3>Step 2: Employment Details</h3>
+                <div class="form-group">
+                  <label for="employer">Employer</label>
+                  <input type="text" class="form-control" id="employer" required>
+                </div>
+                <div class="form-group">
+                  <label for="income">Income</label>
+                  <input type="text" class="form-control" id="income" required>
+                </div>
+              
+                <button class="btn btn-primary prev-btn">Previous</button>
+                <button class="btn btn-primary next-btn">Next</button>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="step-content" id="step3">
+                <h3>Step 3: Loan Details</h3>
+                <div class="form-group">
+                  <label for="loanPurpose">Loan Purpose</label>
+                  <select class="form-control" id="loanPurpose" required>
+                    <option value="purchase">Purchase</option>
+                    <option value="refinance">Refinance</option>
+                   
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="loanAmount">Loan Amount</label>
+                  <input type="text" class="form-control" id="loanAmount" required>
+                </div>
+                <div class="form-group">
+                    <label for="loanTenure">Loan Tenure</label>
+                    <input type="text" class="form-control" id="loanTenure" required>
+                  </div>
+               
+                <button class="btn btn-primary prev-btn">Previous</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var currentStep = 1;
+      var totalSteps = $('.step-content').length;
+
+      $('.next-btn').click(function() {
+        if (validateForm(currentStep)) {
+          $('#step' + currentStep).removeClass('active');
+          currentStep++;
+          $('#step' + currentStep).addClass('active');
+        }
+      });
+
+      $('.prev-btn').click(function() {
+        $('#step' + currentStep).removeClass('active');
+        currentStep--;
+        $('#step' + currentStep).addClass('active');
+      });
+
+      function validateForm(step) {
+        var isValid = true;
+        $('#step' + step + ' input[required]').each(function() {
+          if ($(this).val().trim() === '') {
+            isValid = false;
+            $(this).addClass('is-invalid');
+          } else {
+            $(this).removeClass('is-invalid');
+          }
+        });
+        return isValid;
+      }
+
+      $('#wizardForm').submit(function(event) {
+        event.preventDefault();
+        if (validateForm(currentStep)) {
+          // Gather form data and submit the form to the server
+          var formData = {
+            fullName: $('#fullName').val(),
+            email: $('#email').val(),
+            employer: $('#employer').val(),
+            income: $('#income').val(),
+            loanPurpose: $('#loanPurpose').val(),
+            loanAmount: $('#loanAmount').val()
+          };
+
+          // Example: Display the form data in the console
+          console.log(formData);
+
+          // Example: Redirect to a success page
+          window.location.href = 'success.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

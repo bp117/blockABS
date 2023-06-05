@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockABS</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .accordion-item {
+      margin-bottom: 10px;
+    }
+    .accordion-toggle {
+      cursor: pointer;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .accordion-toggle.active {
+      background-color: #e9ecef;
+    }
+    .accordion-toggle i {
+      margin-right: 5px;
+    }
+    .loan-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .loan-table th,
+    .loan-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .loan-table th {
+      background-color: #f8f9fa;
+      text-align: left;
+    }
+    .loan-table td.actions {
+      text-align: center;
+    }
+    .loan-table td.actions a {
+      color: #fff;
+      display: inline-block;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .loan-table td.actions a:hover {
+      background-color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-primary">
+    <span class="navbar-brand mb-0 h1">BlockABS</span>
+  </nav>
+
+  <div class="container mt-5">
+    <div id="loanAccordion">
+      <!-- Pool A -->
+      <h3 class="accordion-toggle" data-toggle="collapse" data-target="#poolAContent">
+        <span><i class="fas fa-caret-down"></i> Pool A</span>
+        <button class="btn btn-primary btn-sm add-loan-btn">Add Loans</button>
+      </h3>
+      <div id="poolAContent" class="collapse show">
+        <table class="loan-table">
+          <thead>
+            <tr>
+              <th>Loan ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loan 1</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan1" data-loan-amount="10000" data-interest-rate="5%" data-tenure="12" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Loan 2</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan2" data-loan-amount="15000" data-interest-rate="4.5%" data-tenure="24" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pool B -->
+      <h3 class="accordion-toggle" data-toggle="collapse" data-target="#poolBContent">
+        <span><i class="fas fa-caret-down"></i> Pool B</span>
+        <button class="btn btn-primary btn-sm add-loan-btn">Add Loans</button>
+      </h3>
+      <div id="poolBContent" class="collapse">
+        <table class="loan-table">
+          <thead>
+            <tr>
+              <th>Loan ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loan 3</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan3" data-loan-amount="20000" data-interest-rate="6%" data-tenure="36" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Loan 4</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan4" data-loan-amount="12000" data-interest-rate="4%" data-tenure="18" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pool C -->
+      <h3 class="accordion-toggle" data-toggle="collapse" data-target="#poolCContent">
+        <span><i class="fas fa-caret-down"></i> Pool C</span>
+        <button class="btn btn-primary btn-sm add-loan-btn">Add Loans</button>
+      </h3>
+      <div id="poolCContent" class="collapse">
+        <table class="loan-table">
+          <thead>
+            <tr>
+              <th>Loan ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loan 5</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan5" data-loan-amount="18000" data-interest-rate="5.5%" data-tenure="24" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Loan 6</td>
+              <td class="actions">
+                <a href="#" class="btn btn-primary btn-sm view-loan-btn" data-loan-id="loan6" data-loan-amount="25000" data-interest-rate="6.5%" data-tenure="36" title="View"><i class="fas fa-eye"></i> View</a>
+                <a href="#" class="btn btn-danger btn-sm delete-loan-btn" title="Delete"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Details Modal -->
+  <div class="modal fade" id="loanDetailsModal" tabindex="-1" role="dialog" aria-labelledby="loanDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loanDetailsModalLabel">Loan Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="loanId">Loan ID:</label>
+            <input type="text" class="form-control" id="loanId" readonly>
+          </div>
+          <div class="form-group">
+            <label for="loanAmount">Loan Amount:</label>
+            <input type="text" class="form-control" id="loanAmount" readonly>
+          </div>
+          <div class="form-group">
+            <label for="interestRate">Interest Rate:</label>
+            <input type="text" class="form-control" id="interestRate" readonly>
+          </div>
+          <div class="form-group">
+            <label for="tenure">Tenure:</label>
+            <input type="text" class="form-control" id="tenure" readonly>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Loan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this loan?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".accordion-toggle").click(function() {
+        $(this).toggleClass("active");
+        $(this).find("i").toggleClass("fa-caret-down fa-caret-up");
+        $(this).next().slideToggle();
+      });
+
+      $(".add-loan-btn").click(function() {
+        $("#addLoanModal").modal("show");
+      });
+
+      $(".view-loan-btn").click(function() {
+        var loanId = $(this).data("loan-id");
+        var loanAmount = $(this).data("loan-amount");
+        var interestRate = $(this).data("interest-rate");
+        var tenure = $(this).data("tenure");
+
+        $("#loanId").val(loanId);
+        $("#loanAmount").val(loanAmount);
+        $("#interestRate").val(interestRate);
+        $("#tenure").val(tenure);
+
+        $("#loanDetailsModal").modal("show");
+      });
+
+      $(".delete-loan-btn").click(function() {
+        var deleteBtn = $(this);
+        $("#confirmDeleteBtn").click(function() {
+          var row = deleteBtn.closest("tr");
+          row.remove();
+          $("#deleteConfirmationModal").modal("hide");
+        });
+        $("#deleteConfirmationModal").modal("show");
+      });
+    });
+  </script>
+</body>
+</html>
