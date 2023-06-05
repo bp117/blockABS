@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Servicing Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Custom CSS -->
+  <style>
+    .app-bar {
+      background-color: #f8f9fa;
+      padding: 10px;
+    }
+
+    .app-bar h1 {
+      margin: 0;
+    }
+
+    .dashboard-container {
+      margin-top: 20px;
+    }
+
+    .loan-card {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    .loan-card .loan-details {
+      padding: 20px;
+    }
+
+    .loan-card .loan-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .loan-card .loan-details th,
+    .loan-card .loan-details td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .loan-card .loan-actions {
+      text-align: right;
+      padding: 10px;
+    }
+
+    .loan-card .loan-actions button {
+      margin-left: 5px;
+    }
+
+    .loan-card .loan-details .table th {
+      width: 20%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-bar">
+    <h1>Loan Servicing Dashboard</h1>
+  </div>
+
+  <div class="container dashboard-container">
+    <div class="accordion" id="loanAccordion">
+      <div class="card">
+        <div class="card-header" id="loanHeading1">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#loanCollapse1"
+              aria-expanded="true" aria-controls="loanCollapse1">
+              Loan ID: 123456
+            </button>
+          </h2>
+        </div>
+
+        <div id="loanCollapse1" class="collapse show" aria-labelledby="loanHeading1" data-parent="#loanAccordion">
+          <div class="card-body">
+            <table class="table table-responsive">
+              <tr>
+                <th>Borrower Name</th>
+                <td>John Doe</td>
+                <th>Paid Installments</th>
+                <td>10</td>
+              </tr>
+              <tr>
+                <th>Pending Payments</th>
+                <td>5</td>
+                <th>Outstanding Principal</th>
+                <td>$50,000</td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td>Active</td>
+                <th>Tenure</th>
+                <td>36 months</td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#paymentSchedulesModal"><i
+                      class="fas fa-eye"></i> View Schedules</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="loanHeading2">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#loanCollapse2"
+              aria-expanded="false" aria-controls="loanCollapse2">
+              Loan ID: 789012
+            </button>
+          </h2>
+        </div>
+
+        <div id="loanCollapse2" class="collapse" aria-labelledby="loanHeading2" data-parent="#loanAccordion">
+          <div class="card-body">
+            <table class="table table-responsive">
+              <tr>
+                <th>Borrower Name</th>
+                <td>Jane Smith</td>
+                <th>Paid Installments</th>
+                <td>20</td>
+              </tr>
+              <tr>
+                <th>Pending Payments</th>
+                <td>0</td>
+                <th>Outstanding Principal</th>
+                <td>$80,000</td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <td>Active</td>
+                <th>Tenure</th>
+                <td>24 months</td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#paymentSchedulesModal"><i
+                      class="fas fa-eye"></i> View Schedules</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Schedules Modal -->
+  <div class="modal fade" id="paymentSchedulesModal" tabindex="-1" role="dialog"
+    aria-labelledby="paymentSchedulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentSchedulesModalLabel">Payment Schedules</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th>Row Number</th>
+                <th>EMI Amount</th>
+                <th>Due Date</th>
+                <th>Paid Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>$500</td>
+                <td>2023-01-01</td>
+                <td>-</td>
+                <td>Pending</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>$500</td>
+                <td>2023-02-01</td>
+                <td>-</td>
+                <td>Pending</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>$500</td>
+                <td>2023-03-01</td>
+                <td>-</td>
+                <td>Pending</td>
+              </tr>
+              <!-- Add more rows here -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

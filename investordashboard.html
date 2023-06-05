@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investor Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .app-bar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .container-fluid {
+            margin-top: 20px;
+        }
+
+        .portfolio-card {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .investment-table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar -->
+    <div class="app-bar">
+        <h2>Investor Dashboard</h2>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Portfolio Summary Section -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="portfolio-card">
+                    <h5>Total Invested Amount</h5>
+                    <p>$100,000</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="portfolio-card">
+                    <h5>Current Portfolio Value</h5>
+                    <p>$120,000</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="portfolio-card">
+                    <h5>Percentage Returns</h5>
+                    <p>20%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Performance Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Investment Performance</h3>
+                <table class="table investment-table">
+                    <thead>
+                        <tr>
+                            <th>Investment ID</th>
+                            <th>Asset Name</th>
+                            <th>Investment Amount</th>
+                            <th>Current Value</th>
+                            <th>Percentage Returns</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Stock A</td>
+                            <td>$5,000</td>
+                            <td>$6,500</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Bond B</td>
+                            <td>$3,000</td>
+                            <td>$3,200</td>
+                            <td>6.67%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Transaction History Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Transaction History</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Transaction Type</th>
+                            <th>Date</th>
+                            <th>Asset Name</th>
+                            <th>Quantity</th>
+                            <th>Transaction Amount</th>
+                            <th>Fees</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Purchase</td>
+                            <td>2022-01-01</td>
+                            <td>Stock A</td>
+                            <td>10</td>
+                            <td>$1,000</td>
+                            <td>$10</td>
+                        </tr>
+                        <tr>
+                            <td>Sale</td>
+                            <td>2022-02-15</td>
+                            <td>Bond B</td>
+                            <td>5</td>
+                            <td>$500</td>
+                            <td>$5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
